@@ -1,7 +1,10 @@
+lvim.builtin.lualine.options = {
+	theme = "github_dark_default",
+}
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = false
-lvim.colorscheme = "onedarker"
+lvim.colorscheme = "github_dark_default"
 lvim.lsp.diagnostics.virtual_text = false
 lvim.lsp.diagnostics.update_in_insert = false
 
@@ -91,7 +94,6 @@ lvim.builtin.which_key.mappings["t"] = {
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-lvim.builtin.dashboard.active = true
 lvim.builtin.notify.active = true
 
 lvim.builtin.terminal.active = true
@@ -121,6 +123,7 @@ lvim.builtin.treesitter.ensure_installed = {
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 lvim.builtin.treesitter.autotag = { enable = true }
+
 -- generic LSP settings
 
 -- ---@usage disable automatic installation of servers
@@ -220,7 +223,7 @@ lvim.plugins = {
 		config = function()
 			require("user.blank").config()
 		end,
-		ft = { "typescriptreact", "python", "lua" },
+		ft = { "typescriptreact", "python", "lua", "dart" },
 	},
 	{
 		"unblevable/quick-scope",
@@ -239,6 +242,15 @@ lvim.plugins = {
 		ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 	},
 	{ "iamcco/markdown-preview.nvim", run = { "cd app && yarn install" }, ft = { "markdown" } },
+	{
+		"projekt0n/github-nvim-theme",
+		config = function()
+			require("github-theme").setup({
+				theme_style = "dark_default",
+        function_style	= "bold"
+			})
+		end,
+	},
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -247,7 +259,6 @@ lvim.plugins = {
 -- }
 
 require("options")
--- load snippets from path/of/your/nvim/config/my-cool-snippets
 require("luasnip.loaders.from_vscode").lazy_load({
 	paths = {
 		"/home/nick/.local/share/lunarvim/site/pack/packer/opt/vscode-es7-javascript-react-snippets/",

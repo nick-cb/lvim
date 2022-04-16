@@ -30,7 +30,7 @@ M.config = function()
 			"^pair",
 			"^object",
 		},
-		filetype = { "typescriptreact", "lua", "python" },
+		filetype = { "typescriptreact", "lua", "python", "dart" },
 		use_treesitter = true,
 		indent_level = 50,
 	})
