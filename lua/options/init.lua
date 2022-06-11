@@ -27,6 +27,8 @@ vim.cmd([[
   inoremap ? ?<c-g>u
   inoremap ; ;<c-g>u
   inoremap <space> <space><c-g>u
+  nnoremap <C-j> <C-w><C-w>
+  nnoremap <C-k> <C-w><S-w>
 ]])
 
 -- function MyTabLine()

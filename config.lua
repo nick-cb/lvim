@@ -65,7 +65,6 @@ lvim.builtin.telescope.defaults.mappings = {
 -- 	s = { "<cmd>lua StartCompileOnSave()<cr>", "compile on save" },
 -- 	S = { "<cmd>lua StopCompileOnSave()<cr>", "stop compile on save" },
 -- }
-lvim.builtin.which_key.mappings.t = { "<cmd>NvimTreeRefresh<cr>", "refresh tree" }
 lvim.builtin.which_key.mappings["w"] = {
 	name = "+Worktree",
 	c = { "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>", "change worktree" },
@@ -73,6 +72,18 @@ lvim.builtin.which_key.mappings["w"] = {
 }
 lvim.builtin.which_key.mappings.d = { "<cmd>DBUIToggle<cr>", "open dadui" }
 lvim.builtin.which_key.mappings.b.d = { "<cmd>bdelete!<cr>", "delte buffer" }
+lvim.builtin.which_key.mappings["t"] = {
+	name = "+Terminal",
+	n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
+	u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
+	t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
+	p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
+	f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
+	h = { "<cmd>ToggleTerm size=15 direction=horizontal<cr>", "Horizontal" },
+	v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
+}
+-- vim.keymap.set("n", "<C-T>", "<cmd>ToggleTerm size=10 direction=horizontal<cr>", { noremap = true })
+-- vim.keymap.set("i", "<C-T>", "<cmd>ToggleTerm", { noremap = true })
 
 -- @Builtin
 lvim.builtin.notify.active = true
@@ -80,12 +91,22 @@ lvim.builtin.terminal.active = true
 lvim.builtin.terminal.size = 15
 lvim.builtin.terminal.direction = "horizontal"
 
--- lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 -- lvim.builtin.nvimtree.setup.renderer.icons.glyphs.default = ""
-lvim.builtin.nvimtree.show_icons.git = 1
+-- lvim.builtin.nvimtree.show_icons.git = 1
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 lvim.use_icons = true
+lvim.builtin.nvimtree.setup.renderer.icons.glyphs.git = {
+	unstaged = "",
+	staged = "",
+	unmerged = "",
+	renamed = "➜",
+	deleted = "",
+	untracked = "",
+	ignored = "◌",
+}
 
 lvim.builtin.bufferline.active = true
+lvim.builtin.bufferline.options.sort_by = "insert_at_end"
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
@@ -163,12 +184,6 @@ lvim.builtin.telescope.defaults.file_ignore_patterns = {
 
 -- @Additional Plugins
 lvim.plugins = {
-	-- {
-	-- 	"akinsho/nvim-bufferline.lua",
-	-- 	config = function()
-	-- 		require("user.bufferline").config()
-	-- 	end,
-	-- },
 	{
 		"windwp/nvim-ts-autotag",
 		event = "InsertEnter",
@@ -270,9 +285,17 @@ lvim.plugins = {
 		end,
 		event = "BufWinEnter",
 	},
+	{
+		"gbprod/substitute.nvim",
+		config = function()
+			require("user.substitue")
+		end,
+	},
+	{ "tpope/vim-repeat" },
+	{ "markonm/traces.vim" },
+	{ "dart-lang/dart-vim-plugin" },
 }
 
-require("options")
 require("luasnip.loaders.from_vscode").lazy_load({
 	paths = {
 		"/home/nick/.local/share/lunarvim/site/pack/packer/opt/vscode-es7-javascript-react-snippets/",
@@ -284,5 +307,7 @@ require("luasnip.loaders.from_vscode").lazy_load({
 	},
 })
 
+require("options")
 require("user.worktrees")
 require("user.dwm")
+require("user.web-devicon")
