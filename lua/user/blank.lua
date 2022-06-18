@@ -1,7 +1,12 @@
 local M = {}
 
 M.config = function()
-	require("indent_blankline").setup({
+	local status_ok, blankline = pcall(require, "blankline")
+	if not status_ok then
+		return
+	end
+
+	blankline.setup({
 		-- show_end_of_line = true,
 		buftype_exclude = { "terminal" },
 		filetype_exclude = { "dashboard", "packer" },

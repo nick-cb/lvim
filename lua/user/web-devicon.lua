@@ -45,23 +45,28 @@ require("nvim-web-devicons").set_icon({
 		color = "#ff7b72",
 		name = "Lock",
 	},
-  [".eslintrc"] = {
-    icon = "",
-    color = "#713a27",
-    name = "Eslint"
-  },
-  [".eslintignore"] = {
-    icon = "",
-    name = "EslintIngore"
-  },
-  [".git"] = {
-    icon = "",
-    color = "#F34F29",
-    name = "Git"
-  },
-  ['.prettierrc'] = {
-    icon = "",
-    color = "#C695C8",
-    name = "Prettier"
-  }
+	[".eslintrc"] = {
+		icon = "",
+		color = "#713a27",
+		name = "Eslint",
+	},
+	[".eslintignore"] = {
+		icon = "",
+		name = "EslintIngore",
+	},
+	[".git"] = {
+		icon = "",
+		color = "#F34F29",
+		name = "Git",
+	},
+	[".prettierrc"] = {
+		icon = "",
+		color = "#C695C8",
+		name = "Prettier",
+	},
+	prisma = {
+		icon = "卑",
+		color = "#FE69A8",
+    name = "Prisma"
+	},
 })

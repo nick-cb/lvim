@@ -45,18 +45,20 @@ Worktree.on_tree_change(function(op, metadata)
 					})
 					:start()
 			elseif option == "I" then
-				Job:new({
-					command = "yarn",
-					cwd = vim.loop.cwd(),
-					on_exit = function()
-						Job
-							:new({
-								command = "notify-send",
-								args = { "Linked node_modules" },
-							})
-							:start()
-					end,
-				}):start()
+				Job
+					:new({
+						command = "yarn",
+						cwd = vim.loop.cwd(),
+						on_exit = function()
+							Job
+								:new({
+									command = "notify-send",
+									args = { "Linked node_modules" },
+								})
+								:start()
+						end,
+					})
+					:start()
 			end
 		end
 	end
