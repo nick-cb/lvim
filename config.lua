@@ -19,6 +19,34 @@ require("user.web-devicon")
 require("user.bookmark")
 require("user.worktrees")
 
+local handler = function(virtText, lnum, endLnum, width, truncate)
+	local newVirtText = {}
+	local suffix = ("  %d "):format(endLnum - lnum)
+	local sufWidth = vim.fn.strdisplaywidth(suffix)
+	local targetWidth = width - sufWidth
+	local curWidth = 0
+	for _, chunk in ipairs(virtText) do
+		local chunkText = chunk[1]
+		local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+		if targetWidth > curWidth + chunkWidth then
+			table.insert(newVirtText, chunk)
+		else
+			chunkText = truncate(chunkText, targetWidth - curWidth)
+			local hlGroup = chunk[2]
+			table.insert(newVirtText, { chunkText, hlGroup })
+			chunkWidth = vim.fn.strdisplaywidth(chunkText)
+			-- str width returned from truncate() may less than 2nd argument, need padding
+			if curWidth + chunkWidth < targetWidth then
+				suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
+			end
+			break
+		end
+		curWidth = curWidth + chunkWidth
+	end
+	table.insert(newVirtText, { suffix, "MoreMsg" })
+	return newVirtText
+end
+
 lvim.plugins = {
 	{
 		"windwp/nvim-ts-autotag",
@@ -77,7 +105,11 @@ lvim.plugins = {
 		"Nash0x7E2/awesome-flutter-snippets",
 		ft = { "dart" },
 	},
-	{ "iamcco/markdown-preview.nvim", run = { "cd app && yarn install" }, ft = { "markdown" } },
+	{
+		"iamcco/markdown-preview.nvim",
+		run = { "cd app && yarn install" },
+		ft = { "markdown" },
+	},
 	{
 		"projekt0n/github-nvim-theme",
 		config = function()
@@ -137,4 +169,13 @@ lvim.plugins = {
 	},
 	{ "MattesGroeger/vim-bookmarks" },
 	{ "tom-anders/telescope-vim-bookmarks.nvim" },
+	{
+		"kevinhwang91/nvim-ufo",
+		config = function()
+			require("ufo").setup({
+				fold_virt_text_handler = handler,
+			})
+		end,
+		requires = "kevinhwang91/promise-async",
+	},
 }
