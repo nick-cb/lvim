@@ -6,7 +6,8 @@ local custom_options = function()
 		fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]],
 		foldcolumn = "1",
     foldlevel = 99,
-    foldenable = true
+    foldenable = true,
+    -- title = false
 	}
 	for k, v in pairs(custom_options) do
 		vim.opt[k] = v

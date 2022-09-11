@@ -69,4 +69,9 @@ require("nvim-web-devicons").set_icon({
 		color = "#FE69A8",
     name = "Prisma"
 	},
+  scm = {
+    icon = "侮",
+    color = "#6A9955",
+    name = "Query"
+  }
 })

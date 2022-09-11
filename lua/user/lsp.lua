@@ -4,9 +4,16 @@ lvim.lsp.automatic_servers_installation = false
 
 -- @Lsp
 -- lvim.lsp.templates_dir = join_paths(get_runtime_dir(), "after", "ftplugin")
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+-- You are now capable!
+capabilities.textDocument.colorProvider = true
 require("lvim.lsp.manager").setup("tailwindcss", {
 	filetypes = { "typescriptreact", "typescript", "html", "css", "scss" },
 	root_dir = require("lspconfig").util.root_pattern("tailwind.config.js"),
+	-- on_attach = function(_, bufnr)
+	-- 	require("document-color").buf_attach(bufnr)
+	-- end,
 })
 require("lvim.lsp.manager").setup("angularls", {
 	root_dir = require("lspconfig").util.root_pattern("angular.json"),
@@ -40,6 +47,6 @@ formatters.setup({
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true
+	dynamicRegistration = false,
+	lineFoldingOnly = true,
 }

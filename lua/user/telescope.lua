@@ -1,5 +1,5 @@
 require("telescope").load_extension("git_worktree")
-require("telescope").load_extension("vim_bookmarks")
+-- require("telescope").load_extension("vim_bookmarks")
 require("telescope").load_extension("refactoring")
 lvim.builtin.telescope.defaults.file_ignore_patterns = {
 	"vendor/*",

@@ -39,16 +39,27 @@ lvim.builtin.which_key.mappings["t"] = {
 	h = { "<cmd>ToggleTerm size=15 direction=horizontal<cr>", "Horizontal" },
 	v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
 }
+-- vim.api.nvim_set_keymap("n", "<C-s>", ":SymbolsOutline<cr>", { noremap = true, silent = true })
+lvim.keys.normal_mode = {
+	["<C-s>"] = ":SymbolsOutline<cr>",
+  ["<S-L>"] = ":BufferLineCycleNext<cr>",
+  ["<S-H>"] = ":BufferLineCyclePrev<cr>"
+}
+
+lvim.builtin.which_key.mappings.s.s = {
+  "<cmd>Telescope current_buffer_fuzzy_find fuzzy=false<cr>",
+	"Search text curren buffer",
+}
 -- lvim.builtin.which_key.mappings["m"] = {
 -- 	name = "+Bookmarks",
 -- 	a = { "<cmd>Telescope vim_bookmarks all<cr>", "Show all" },
 -- 	c = { "<cmd>Telescope vim_bookmarks current_file<cr>", "Show current" },
 -- }
-vim.api.nvim_set_keymap("n", "mm", ":BookmarkToggle<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "mi", ":BookmarkAnnotate<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "mn", ":BookmarkNext<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "mp", ":BookmarkPrev<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "mc", ":BookmarkClear<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "mx", ":BookmarkClearAll<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "ma", ":Telescope vim_bookmarks all<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "mc", ":Telescope vim_bookmarks current_file<cr>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "mm", ":BookmarkToggle<cr>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "mi", ":BookmarkAnnotate<cr>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "mn", ":BookmarkNext<cr>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "mp", ":BookmarkPrev<cr>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "mc", ":BookmarkClear<cr>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "mx", ":BookmarkClearAll<cr>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "ma", ":Telescope vim_bookmarks all<cr>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "mc", ":Telescope vim_bookmarks current_file<cr>", { noremap = true, silent = true })
