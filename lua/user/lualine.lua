@@ -1,3 +1,6 @@
+-- lvim.builtin.lualine.options = {
+-- 	theme = "github_dark_default",
+-- }
 lvim.builtin.lualine.options = {
 	globalstatus = true,
 	icons_enabled = true,

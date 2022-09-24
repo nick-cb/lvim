@@ -21,9 +21,9 @@ require("lvim.lsp.manager").setup("angularls", {
 require("lvim.lsp.manager").setup("dartls", {
 	root_dir = require("lspconfig").util.root_pattern("pubspec.yaml"),
 })
-require("lvim.lsp.manager").setup("emmet_ls", {
-	root_dir = require("lspconfig").util.root_pattern(".git"),
-})
+-- require("lvim.lsp.manager").setup("emmet_ls", {
+-- 	root_dir = require("lspconfig").util.root_pattern(".git"),
+-- })
 require("lvim.lsp.manager").setup("prismals", {
 	-- filetypes = { "typescriptreact", "typescript" },
 	root_dir = require("lspconfig").util.root_pattern(".git"),
@@ -45,7 +45,6 @@ formatters.setup({
 	},
 })
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.foldingRange = {
 	dynamicRegistration = false,
 	lineFoldingOnly = true,

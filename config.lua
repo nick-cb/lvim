@@ -2,9 +2,6 @@ lvim.log.level = "warn"
 lvim.format_on_save = false
 lvim.colorscheme = "darkplus"
 lvim.builtin.notify.active = true
--- lvim.builtin.lualine.options = {
--- 	theme = "github_dark_default",
--- }
 lvim.builtin.notify.opts = {
 	timeout = 1500,
 }
@@ -20,39 +17,9 @@ require("user.telescope")
 require("user.snippet")
 require("user.web-devicon")
 require("user.lualine")
-require("user.bookmark")
+-- require("user.bookmark")
 require("user.worktrees")
-vim.cmd(
-	"hi FocusedSymbol term=italic,bold cterm=italic ctermbg=yellow ctermfg=darkblue gui=bold,italic guibg=#164449 guifg=#c9d1d9"
-)
-
-local handler = function(virtText, lnum, endLnum, width, truncate)
-	local newVirtText = {}
-	local suffix = ("  %d "):format(endLnum - lnum)
-	local sufWidth = vim.fn.strdisplaywidth(suffix)
-	local targetWidth = width - sufWidth
-	local curWidth = 0
-	for _, chunk in ipairs(virtText) do
-		local chunkText = chunk[1]
-		local chunkWidth = vim.fn.strdisplaywidth(chunkText)
-		if targetWidth > curWidth + chunkWidth then
-			table.insert(newVirtText, chunk)
-		else
-			chunkText = truncate(chunkText, targetWidth - curWidth)
-			local hlGroup = chunk[2]
-			table.insert(newVirtText, { chunkText, hlGroup })
-			chunkWidth = vim.fn.strdisplaywidth(chunkText)
-			-- str width returned from truncate() may less than 2nd argument, need padding
-			if curWidth + chunkWidth < targetWidth then
-				suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
-			end
-			break
-		end
-		curWidth = curWidth + chunkWidth
-	end
-	table.insert(newVirtText, { suffix, "MoreMsg" })
-	return newVirtText
-end
+require("user.alpha")
 
 lvim.plugins = {
 	{
@@ -180,23 +147,23 @@ lvim.plugins = {
 		"kevinhwang91/nvim-ufo",
 		config = function()
 			require("ufo").setup({
-				fold_virt_text_handler = handler,
+        require("user.ufo").config()
 			})
 		end,
 		requires = "kevinhwang91/promise-async",
 	},
-	-- {
-	-- 	"NguyenHungViCb/symbols-outline.nvim",
-	-- 	-- "simrat39/symbols-outline.nvim",
-	-- 	-- "mxsdev/symbols-outline.nvim"
-	-- 	config = function()
-	-- 		require("symbols-outline").setup({
-	-- 			-- auto_preview = true,
-	-- 			autofold_depth = 3,
-	-- 			auto_unfold_hover = true,
-	-- 		})
-	-- 	end,
-	-- },
+	{
+		"NguyenHungViCb/symbols-outline.nvim",
+		-- "simrat39/symbols-outline.nvim",
+		-- "mxsdev/symbols-outline.nvim"
+		config = function()
+			require("symbols-outline").setup({
+				-- auto_preview = true,
+				autofold_depth = 3,
+				auto_unfold_hover = true,
+			})
+		end,
+	},
 	{ "nvim-treesitter/playground" },
 	{
 		"rmagatti/auto-session",

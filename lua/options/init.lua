@@ -33,3 +33,8 @@ vim.cmd([[
   nnoremap <C-j> <C-w><C-w>
   nnoremap <C-k> <C-w><S-w>
 ]])
+
+-- symbols-outline
+vim.cmd(
+	"hi FocusedSymbol term=italic,bold cterm=italic ctermbg=yellow ctermfg=darkblue gui=bold,italic guibg=#164449 guifg=#c9d1d9"
+)
