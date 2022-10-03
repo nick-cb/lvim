@@ -47,6 +47,7 @@ lvim.plugins = {
 			"json",
 			"dosini",
 			"sh",
+			"config",
 		},
 		config = function()
 			require("user.colorizer").config()
@@ -147,7 +148,7 @@ lvim.plugins = {
 		"kevinhwang91/nvim-ufo",
 		config = function()
 			require("ufo").setup({
-        require("user.ufo").config()
+				require("user.ufo").config(),
 			})
 		end,
 		requires = "kevinhwang91/promise-async",
@@ -174,7 +175,7 @@ lvim.plugins = {
 			})
 		end,
 	},
-	{ "lunarvim/darkplus.nvim", commit = "2584cdeefc078351a79073322eb7f14d7fbb1835" },
+	{ "lunarvim/darkplus.nvim" },
 	-- { "hrsh7th/cmp-emoji" },
 	{ "alaviss/nim.nvim", ft = "nim" },
 	-- {

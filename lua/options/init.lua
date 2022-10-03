@@ -5,9 +5,11 @@ local custom_options = function()
 		smartcase = true,
 		fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]],
 		foldcolumn = "1",
-    foldlevel = 99,
-    foldenable = true,
-    -- title = false
+		foldlevel = 99,
+		foldenable = true,
+		mousemodel = "extend",
+    cmdheight = 0
+		-- title = false
 	}
 	for k, v in pairs(custom_options) do
 		vim.opt[k] = v
