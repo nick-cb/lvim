@@ -1,10 +1,14 @@
 lvim.log.level = "warn"
 lvim.format_on_save = false
 lvim.colorscheme = "darkplus"
-lvim.builtin.notify.active = true
+lvim.builtin.notify.active = false
 lvim.builtin.notify.opts = {
 	timeout = 1500,
 }
+lvim.builtin.breadcrumbs.active = false
+lvim.builtin.nvimtree.active = true
+lvim.builtin.lir.active = true
+lvim.builtin.lualine.options.theme = "darkplus"
 
 require("options")
 require("user.lsp")
@@ -16,7 +20,7 @@ require("user.treesitter")
 require("user.telescope")
 require("user.snippet")
 require("user.web-devicon")
-require("user.lualine")
+-- require("user.lualine")
 -- require("user.bookmark")
 require("user.worktrees")
 require("user.alpha")
@@ -53,13 +57,13 @@ lvim.plugins = {
 			require("user.colorizer").config()
 		end,
 	},
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		config = function()
-			require("user.blank").config()
-		end,
-		ft = { "typescriptreact", "python", "lua", "dart" },
-	},
+	-- {
+	-- 	"lukas-reineke/indent-blankline.nvim",
+	-- 	config = function()
+	-- 		require("user.blank").config()
+	-- 	end,
+	-- 	ft = { "typescriptreact", "python", "lua", "dart" },
+	-- },
 	{
 		"unblevable/quick-scope",
 		config = function()
@@ -148,6 +152,7 @@ lvim.plugins = {
 		"kevinhwang91/nvim-ufo",
 		config = function()
 			require("ufo").setup({
+				---@diagnostic disable-next-line: different-requires
 				require("user.ufo").config(),
 			})
 		end,
@@ -162,6 +167,13 @@ lvim.plugins = {
 				-- auto_preview = true,
 				autofold_depth = 3,
 				auto_unfold_hover = true,
+				symbols = {
+					Interface = { icon = "", hl = "CmpItemKindInterface" },
+					Field = { icon = "", hl = "CmpItemKindField" },
+					Variable = { icon = "", hl = "CmpItemKindVariable" },
+					Function = { icon = "", hl = "CmpItemKindFunction" },
+					Property = { icon = "", hl = "CmpItemKindProperty" },
+				},
 			})
 		end,
 	},

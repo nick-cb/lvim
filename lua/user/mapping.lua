@@ -42,14 +42,16 @@ lvim.builtin.which_key.mappings["t"] = {
 -- vim.api.nvim_set_keymap("n", "<C-s>", ":SymbolsOutline<cr>", { noremap = true, silent = true })
 lvim.keys.normal_mode = {
 	["<C-s>"] = ":SymbolsOutline<cr>",
-  ["<S-L>"] = ":BufferLineCycleNext<cr>",
-  ["<S-H>"] = ":BufferLineCyclePrev<cr>"
+	["<S-L>"] = ":BufferLineCycleNext<cr>",
+	["<S-H>"] = ":BufferLineCyclePrev<cr>",
 }
 
 lvim.builtin.which_key.mappings.s.s = {
-  "<cmd>Telescope current_buffer_fuzzy_find fuzzy=false<cr>",
+	"<cmd>Telescope current_buffer_fuzzy_find fuzzy=false<cr>",
 	"Search text curren buffer",
 }
+lvim.builtin.which_key.mappings.b.l = { ":BufferLineCloseRight<cr>", "Close all to the right" }
+lvim.builtin.which_key.mappings.b.h = { ":BufferLineCloseLeft<cr>", "Close all to the left" }
 -- lvim.builtin.which_key.mappings["m"] = {
 -- 	name = "+Bookmarks",
 -- 	a = { "<cmd>Telescope vim_bookmarks all<cr>", "Show all" },

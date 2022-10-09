@@ -28,10 +28,10 @@ local handler = function(virtText, lnum, endLnum, width, truncate)
 	return newVirtText
 end
 
-M.config = function ()
-  return {
-				fold_virt_text_handler = handler,
-  }
+M.config = function()
+	return {
+		fold_virt_text_handler = handler,
+	}
 end
 
 return M

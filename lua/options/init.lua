@@ -8,7 +8,8 @@ local custom_options = function()
 		foldlevel = 99,
 		foldenable = true,
 		mousemodel = "extend",
-    cmdheight = 0
+		cmdheight = 1,
+		timeoutlen = 100,
 		-- title = false
 	}
 	for k, v in pairs(custom_options) do
