@@ -19,24 +19,6 @@ end
 
 custom_options()
 
-vim.cmd([[
-  autocmd BufWinEnter *     :set nofoldenable
-  autocmd BufWinEnter *     :highlight IndentBlanklineContextChar guifg=#768390 gui=nocombine
-  autocmd BufWinEnter *     :highlight IndentBlanklineChar guifg=#373e47 gui=nocombine
-  noremap <TAB> :tabnext<cr>
-  noremap <S-TAB> :tabprevious<cr>
-  nnoremap vv V
-  nnoremap V v$
-  inoremap , ,<c-g>u
-  inoremap . .<c-g>u
-  inoremap ! !<c-g>u
-  inoremap ? ?<c-g>u
-  inoremap ; ;<c-g>u
-  inoremap <space> <space><c-g>u
-  nnoremap <C-j> <C-w><C-w>
-  nnoremap <C-k> <C-w><S-w>
-]])
-
 -- symbols-outline
 vim.cmd(
 	"hi FocusedSymbol term=italic,bold cterm=italic ctermbg=yellow ctermfg=darkblue gui=bold,italic guibg=#164449 guifg=#c9d1d9"

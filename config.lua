@@ -7,23 +7,25 @@ lvim.builtin.notify.opts = {
 }
 lvim.builtin.breadcrumbs.active = false
 lvim.builtin.nvimtree.active = true
-lvim.builtin.lir.active = true
+lvim.builtin.lir.active = false
 lvim.builtin.lualine.options.theme = "darkplus"
+lvim.builtin.indentlines.options.show_current_context = false
 
-require("options")
+require("user.options")
 require("user.lsp")
-require("user.mapping")
+require("user.keymaps")
 require("user.nvimtree")
 require("user.terminal")
 require("user.bufferline")
 require("user.treesitter")
-require("user.telescope")
+require("user.telescope").setup()
 require("user.snippet")
 require("user.web-devicon")
--- require("user.lualine")
+require("user.lualine")
 -- require("user.bookmark")
 require("user.worktrees")
 require("user.alpha")
+require("user.autocmds")
 
 lvim.plugins = {
 	{
@@ -57,13 +59,6 @@ lvim.plugins = {
 			require("user.colorizer").config()
 		end,
 	},
-	-- {
-	-- 	"lukas-reineke/indent-blankline.nvim",
-	-- 	config = function()
-	-- 		require("user.blank").config()
-	-- 	end,
-	-- 	ft = { "typescriptreact", "python", "lua", "dart" },
-	-- },
 	{
 		"unblevable/quick-scope",
 		config = function()
@@ -80,49 +75,17 @@ lvim.plugins = {
 		run = { "yarn install --frozen-lockfile && yarn compile" },
 		ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 	},
-	-- {
-	-- 	"Nash0x7E2/awesome-flutter-snippets",
-	-- 	ft = { "dart" },
-	-- },
 	{
 		"iamcco/markdown-preview.nvim",
 		run = { "cd app && yarn install" },
 		ft = { "markdown" },
 	},
-	-- {
-	-- 	"projekt0n/github-nvim-theme",
-	-- 	config = function()
-	-- 		-- require("github-theme").setup({
-	-- 		-- 	theme_style = "dark_default",
-	-- 		-- 	function_style = "bold",
-	-- 		-- })
-	-- 	end,
-	-- },
-	{ "romainl/vim-cool" },
 	{ "ThePrimeagen/git-worktree.nvim" },
 	{
 		"j-hui/fidget.nvim",
 		config = function()
 			require("user.fidget_spinner").config()
 		end,
-	},
-	{ "kristijanhusak/vim-dadbod-completion" },
-	{
-		"kristijanhusak/vim-dadbod-ui",
-		cmd = {
-			"DBUIToggle",
-			"DBUIAddConnection",
-			"DBUI",
-			"DBUIFindBuffer",
-			"DBUIRenameBuffer",
-		},
-		requires = {
-			{
-				"tpope/vim-dadbod",
-				opt = true,
-			},
-		},
-		opt = true,
 	},
 	{
 		"stevearc/dressing.nvim",
@@ -138,44 +101,18 @@ lvim.plugins = {
 		end,
 	},
 	{ "tpope/vim-repeat" },
-	{ "markonm/traces.vim" },
-	{ "dart-lang/dart-vim-plugin" },
+	-- {
+	-- 	"ThePrimeagen/refactoring.nvim",
+	-- 	config = function()
+	-- 		require("user.refactoring").config()
+	-- 	end,
+	-- },
 	{
-		"ThePrimeagen/refactoring.nvim",
+		"nick-cb/symbols-outline.nvim",
 		config = function()
-			require("user.refactoring").config()
+			require("user.symbol-outline").config()
 		end,
-	},
-	-- { "MattesGroeger/vim-bookmarks" },
-	-- { "tom-anders/telescope-vim-bookmarks.nvim" },
-	{
-		"kevinhwang91/nvim-ufo",
-		config = function()
-			require("ufo").setup({
-				---@diagnostic disable-next-line: different-requires
-				require("user.ufo").config(),
-			})
-		end,
-		requires = "kevinhwang91/promise-async",
-	},
-	{
-		"NguyenHungViCb/symbols-outline.nvim",
-		-- "simrat39/symbols-outline.nvim",
-		-- "mxsdev/symbols-outline.nvim"
-		config = function()
-			require("symbols-outline").setup({
-				-- auto_preview = true,
-				autofold_depth = 3,
-				auto_unfold_hover = true,
-				symbols = {
-					Interface = { icon = "", hl = "CmpItemKindInterface" },
-					Field = { icon = "", hl = "CmpItemKindField" },
-					Variable = { icon = "", hl = "CmpItemKindVariable" },
-					Function = { icon = "", hl = "CmpItemKindFunction" },
-					Property = { icon = "", hl = "CmpItemKindProperty" },
-				},
-			})
-		end,
+    cmd = "SymbolOutlineToggle"
 	},
 	{ "nvim-treesitter/playground" },
 	{
@@ -187,15 +124,26 @@ lvim.plugins = {
 			})
 		end,
 	},
-	{ "lunarvim/darkplus.nvim" },
-	-- { "hrsh7th/cmp-emoji" },
-	{ "alaviss/nim.nvim", ft = "nim" },
-	-- {
-	-- 	"mrshmllow/document-color.nvim",
-	-- 	config = function()
-	-- 		require("document-color").setup({
-	-- 			mode = "background",
-	-- 		})
-	-- 	end,
-	-- },
+	{ "nick-cb/darkplus.nvim" },
+	{
+		"tiagovla/scope.nvim",
+		config = function()
+			require("scope").setup()
+		end,
+	},
+	{
+		"nick-cb/telescope-tabs",
+		requires = { "nvim-telescope/telescope.nvim" },
+		config = function()
+			require("user.telescope-tabs").config()
+		end,
+	},
+	{ "tpope/vim-fugitive" },
+	{ "rickhowe/diffchar.vim" },
+	{
+		"karb94/neoscroll.nvim",
+		config = function()
+			require("neoscroll").setup({})
+		end,
+	},
 }
