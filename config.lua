@@ -8,7 +8,6 @@ lvim.builtin.notify.opts = {
 lvim.builtin.breadcrumbs.active = false
 lvim.builtin.nvimtree.active = true
 lvim.builtin.lir.active = false
-lvim.builtin.lualine.options.theme = "darkplus"
 lvim.builtin.indentlines.options.show_current_context = false
 
 require("user.options")
@@ -112,7 +111,7 @@ lvim.plugins = {
 		config = function()
 			require("user.symbol-outline").config()
 		end,
-    cmd = "SymbolOutlineToggle"
+		cmd = "SymbolOutlineToggle",
 	},
 	{ "nvim-treesitter/playground" },
 	{
@@ -145,5 +144,20 @@ lvim.plugins = {
 		config = function()
 			require("neoscroll").setup({})
 		end,
+	},
+	{
+		"jose-elias-alvarez/typescript.nvim",
+		config = function()
+			require("typescript").setup({})
+		end,
+		branch = "no-lspconfig",
+		ft = {
+			"javascript",
+			"javascriptreact",
+			"javascript.jsx",
+			"typescript",
+			"typescriptreact",
+			"typescript.tsx",
+		},
 	},
 }
