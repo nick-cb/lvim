@@ -8,5 +8,3 @@ require("luasnip.loaders.from_vscode").lazy_load({
 		"/home/nick/.local/share/lunarvim/site/pack/packer/opt/awesome-flutter-snippets/",
 	},
 })
-
-

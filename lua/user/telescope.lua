@@ -16,7 +16,6 @@ local mappings = function(actions)
 end
 
 M.setup = function()
-	require("telescope").load_extension("git_worktree")
 	-- require("telescope").load_extension("refactoring")
 	lvim.builtin.telescope.defaults.file_ignore_patterns = {
 		"vendor/*",

@@ -1,14 +1,12 @@
 lvim.log.level = "warn"
 lvim.format_on_save = false
 lvim.colorscheme = "darkplus"
-lvim.builtin.notify.active = false
-lvim.builtin.notify.opts = {
-	timeout = 1500,
-}
 lvim.builtin.breadcrumbs.active = false
 lvim.builtin.nvimtree.active = true
 lvim.builtin.lir.active = false
+lvim.builtin.alpha.active = false
 lvim.builtin.indentlines.options.show_current_context = false
+lvim.builtin.bufferline.options.close_command = "bdelete! %d"
 
 require("user.options")
 require("user.lsp")
@@ -19,12 +17,11 @@ require("user.bufferline")
 require("user.treesitter")
 require("user.telescope").setup()
 require("user.snippet")
-require("user.web-devicon")
 require("user.lualine")
--- require("user.bookmark")
 require("user.worktrees")
 require("user.alpha")
 require("user.autocmds")
+require("user.web-devicon")
 
 lvim.plugins = {
 	{
@@ -53,6 +50,8 @@ lvim.plugins = {
 			"dosini",
 			"sh",
 			"config",
+			"python",
+      "php"
 		},
 		config = function()
 			require("user.colorizer").config()
@@ -79,7 +78,16 @@ lvim.plugins = {
 		run = { "cd app && yarn install" },
 		ft = { "markdown" },
 	},
-	{ "ThePrimeagen/git-worktree.nvim" },
+	{
+		"ThePrimeagen/git-worktree.nvim",
+		config = function()
+			local status_ok, telescope = pcall(require, "telescope")
+			if not status_ok then
+				return
+			end
+			telescope.load_extension("git_worktree")
+		end,
+	},
 	{
 		"j-hui/fidget.nvim",
 		config = function()
@@ -160,4 +168,12 @@ lvim.plugins = {
 			"typescript.tsx",
 		},
 	},
+	{
+		"lervag/vimtex",
+		config = function()
+			require("user.vimtex").setup()
+		end,
+		ft = { "tex" },
+	},
+	{ "markonm/traces.vim" },
 }

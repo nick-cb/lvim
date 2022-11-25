@@ -73,5 +73,10 @@ require("nvim-web-devicons").set_icon({
     icon = "侮",
     color = "#6A9955",
     name = "Query"
+  },
+  ["Gemfile"] = {
+    icon = "",
+    color = "#701516",
+    name = "Gemfile"
   }
 })

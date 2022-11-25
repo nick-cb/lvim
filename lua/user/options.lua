@@ -1,6 +1,7 @@
 -- vim.g.markdown_fenced_languages = { "python", "cpp", "lua", "javascript" }
 local custom_options = function()
 	local custom_options = {
+		syntax = "enable",
 		relativenumber = true,
 		smartcase = true,
 		fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]],
