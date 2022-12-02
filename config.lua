@@ -7,6 +7,7 @@ lvim.builtin.lir.active = false
 lvim.builtin.alpha.active = false
 lvim.builtin.indentlines.options.show_current_context = false
 lvim.builtin.bufferline.options.close_command = "bdelete! %d"
+lvim.builtin.bufferline.options.sort_by = "insert_after_current"
 
 require("user.options")
 require("user.lsp")
@@ -51,7 +52,7 @@ lvim.plugins = {
 			"sh",
 			"config",
 			"python",
-      "php"
+			"php",
 		},
 		config = function()
 			require("user.colorizer").config()
